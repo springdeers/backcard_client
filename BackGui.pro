@@ -31,3 +31,5 @@ HEADERS  += mainwindow.h \
     nwthread.h
 
 FORMS    += mainwindow.ui
+
+RC_ICONS = icon.ico
