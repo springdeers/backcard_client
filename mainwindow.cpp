@@ -398,3 +398,14 @@ int MainWindow::checkSum( QString & str)
          return 0;
      }
 }
+
+
+void MainWindow::on_clear_btn_clicked()
+{
+    msg_list_all->clear();
+    msg_list_1->clear();
+    msg_list_2->clear();
+    msg_list_3->clear();
+    msg_list_4->clear();
+    ui->TextEdit1->clear();
+}

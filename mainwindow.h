@@ -67,6 +67,9 @@ protected slots:
     void timer_out();
     void timer_tcp_out();
 
+private slots:
+    void on_pushButton_clicked();
+    void on_clear_btn_clicked();
 };
 
 #endif // MAINWINDOW_H
