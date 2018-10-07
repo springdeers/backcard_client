@@ -33,6 +33,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     timer->start(1000);
 
 
+    timer_tcp = new QTimer;
+    connect(timer_tcp,SIGNAL(timeout()),this,SLOT(timer_tcp_out()));
+
+
     // 连接服务器
     QString userName = "moniclient";
     QString userPwd = "123433";
@@ -61,7 +65,10 @@ void MainWindow::slot_loginResult(bool bSuccess, QString strResult)
     else
     {
         connect_state->setStyleSheet("color: red");
-         connect_state->setText("服务器连接失败！");
+        connect_state->setText("服务器连接失败！");
+        timer_tcp->start(10*1000);
+
+
     }
 
 }
@@ -109,18 +116,33 @@ void MainWindow::timer_out()
     QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     current_time->setText(time);
 
+
     // begin test
     i++;
     if(i>4) i=1;
     QString temp = (QString("%1 卡号：%2  姓名：钢铁侠  状态： 正在打印成绩 \n").arg(time)).arg(i);
     msg_list_all->append(temp);
-    qDebug() <<temp;
+//    qDebug() <<temp;
     if(i == 1) msg_list_1->append(temp);
     if(i == 2) msg_list_2->append(temp);
     if(i == 3) msg_list_3->append(temp);
     if(i == 4) msg_list_4->append(temp);
     data_refresh();
     // end test
+}
+
+void MainWindow::timer_tcp_out()
+{
+        timer_tcp->stop();
+        // 连接服务器
+        QString userName = "moniclient";
+        QString userPwd = "123433";
+        nwthread = new NWThread(this,userName, userPwd);
+        connect(nwthread,SIGNAL(signal_login_result(bool,QString)),this,SLOT(slot_loginResult(bool,QString)));
+        connect(nwthread,SIGNAL(signal_nw_data_avaliable(QString)),this,SLOT(slot_4G_Data(QString)));
+        nwthread->start();
+        connect_state->setStyleSheet("color: black");
+        connect_state->setText("正在连接服务器...");
 }
 
 void MainWindow::slot_4G_Data(QString str)

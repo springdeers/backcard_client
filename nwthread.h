@@ -24,7 +24,7 @@ class NWThread : public QThread
     Q_OBJECT
 private:
     bool  connection_tcp ;
-    bool threadfinished;
+    bool  threadfinished;
     NW_SOCKET_STATE socketState;
     int seqno;
     QTcpSocket* socket;
@@ -48,6 +48,7 @@ public:
     static QString serverIP;
     static int serverPort;
     static qint64 pingdelay;
+    bool   get_tcp_status() { return connection_tcp; }
 
     NWThread(QObject *parent=0,const QString& username="",const QString& password=""):QThread(parent)
     {

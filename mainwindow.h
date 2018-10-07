@@ -46,6 +46,8 @@ private:
     QLabel* connect_state;
 
     QTimer* timer;
+    QTimer* timer_tcp;
+
     QLabel* current_time;
     QStringList* msg_list_all;
     QStringList* msg_list_1;
@@ -63,6 +65,7 @@ protected slots:
     void slot_conbox_index_chaged(int index);
 
     void timer_out();
+    void timer_tcp_out();
 
 };
 
