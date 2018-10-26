@@ -15,11 +15,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     msg_list_4 = new QStringList;
 
     // 添加combobox
-    ui->comboBox->addItem("全部打印机");
-    ui->comboBox->addItem("1号打印机");
-    ui->comboBox->addItem("2号打印机");
-    ui->comboBox->addItem("3号打印机");
-    ui->comboBox->addItem("4号打印机");
+    QIcon icon(":/pic/print.png");
+    ui->comboBox->insertItem(0,icon," 全部打印机");
+    ui->comboBox->insertItem(1,icon," 1号打印机");
+    ui->comboBox->insertItem(2,icon," 2号打印机");
+    ui->comboBox->insertItem(3,icon," 3号打印机");
+    ui->comboBox->insertItem(4,icon," 4号打印机");
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(slot_conbox_index_chaged(int)));
 
 
@@ -67,8 +68,6 @@ void MainWindow::slot_loginResult(bool bSuccess, QString strResult)
         connect_state->setStyleSheet("color: red");
         connect_state->setText("服务器连接失败！");
         timer_tcp->start(10*1000);
-
-
     }
 
 }
@@ -300,6 +299,11 @@ void MainWindow::data_show(QString str )
     {
         if(msg_list_4->count()>MAX_LIST)  msg_list_4->pop_front();
         msg_list_4->append(info);
+    }
+    else
+    {
+        if(msg_list_1->count()>MAX_LIST)  msg_list_1->pop_front();
+         msg_list_1->append(info);
     }
 
 
