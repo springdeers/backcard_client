@@ -117,16 +117,16 @@ void MainWindow::timer_out()
 
 
     // begin test
-    i++;
-    if(i>4) i=1;
-    QString temp = (QString("%1 卡号：%2  姓名：钢铁侠  状态： 正在打印成绩 \n").arg(time)).arg(i);
-    msg_list_all->append(temp);
-//    qDebug() <<temp;
-    if(i == 1) msg_list_1->append(temp);
-    if(i == 2) msg_list_2->append(temp);
-    if(i == 3) msg_list_3->append(temp);
-    if(i == 4) msg_list_4->append(temp);
-    data_refresh();
+//    i++;
+//    if(i>4) i=1;
+//    QString temp = (QString("%1 卡号：%2  姓名：钢铁侠  状态： 正在打印成绩 \n").arg(time)).arg(i);
+//    msg_list_all->append(temp);
+////    qDebug() <<temp;
+//    if(i == 1) msg_list_1->append(temp);
+//    if(i == 2) msg_list_2->append(temp);
+//    if(i == 3) msg_list_3->append(temp);
+//    if(i == 4) msg_list_4->append(temp);
+//    data_refresh();
     // end test
 }
 
